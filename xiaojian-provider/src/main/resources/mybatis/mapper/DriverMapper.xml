@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.bw.xj.mapper.DriverMapper">
+<select id="getList" resultType="map">
+	select 
+	d.id,d.nums,d.`name`,d.sex,d.pushDate,a.`name` sheng,b.`name` shi,c.`name` qu 
+	from zk_driver d 
+	LEFT JOIN zk_area a ON d.shengid = a.id
+	LEFT JOIN zk_area b on d.shiid=b.id 
+	LEFT JOIN zk_area c on d.quid=c.id
+	<where>
+		<if test="name!='' and name!=null">
+			d.`name` like '%${name}%'
+		</if>
+	</where>
+	</select>
+	
+	<insert id="createDri">
+		insert into zk_driver(nums,name,sex,shengid,shiid,quid,pushDate)
+		 values(#{nums},#{name},#{sex},#{shengid},#{shiid},#{quid},#{pushDate})
+	</insert>
+	<update id="updateDri">
+		update zk_driver set nums=#{nums},name=#{name},sex=#{sex},shengid=#{shengid},shiid=#{shiid},quid=#{quid},pushDate=#{pushDate} where id=#{id}
+	</update>
+	
+</mapper>

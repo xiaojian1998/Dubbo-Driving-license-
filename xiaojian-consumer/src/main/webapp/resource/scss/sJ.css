@@ -1,0 +1,25 @@
+	function change(obj,subId) {
+		var parentId=0;
+		if(obj=='null'){
+			parentId=0;
+		}else{
+			parentId=$(obj).val();
+		}
+		//alert($(obj).val())
+		$.post({
+				url:"getsubareas?parentId=" + parentId,
+				success:function(datas){
+					$(subId).empty();
+					$(subId).append('<option value="0">选择</option>')
+					for(var i in datas){
+						$(subId).append('<option value="'+datas[i].id+'">'+datas[i].cname+'</option>')
+					}
+				}
+				
+			})
+	}
+	$(function(){
+		
+		change('null','#sheng');
+	}
+	)

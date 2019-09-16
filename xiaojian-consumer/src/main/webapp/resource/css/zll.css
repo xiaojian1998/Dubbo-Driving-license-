@@ -1,0 +1,26 @@
+import java.io.IOException;
+
+import org.apache.log4j.Logger;
+import org.springframework.context.support.ClassPathXmlApplicationContext;
+
+
+public class StartServer {
+	
+	private static Logger log = Logger.getLogger(StartServer.class);
+	
+	public static void main(String[] args) throws IOException {
+		
+		new ClassPathXmlApplicationContext("classpath:applicationContext.xml");
+		System.in.read();
+		
+		
+		
+	}
+
+}
+function changeCode(obj) {
+		$(obj).attr(
+				"src",
+				"${pageContext.request.contextPath}/code?time="
+						+ new Date().getTime());
+	}
